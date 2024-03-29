@@ -1,0 +1,121 @@
+@font-face {
+    font-family: 'Aurebesh';
+    src: url('AurebeshAF-Canon.otf') format('opentype');
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    position: relative; /* Ensures child elements with absolute positioning are relative to this container */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Aligns children vertically */
+    justify-content: space-between; /* Maximizes space between top content and the check button */
+    align-items: center; /* Centers children horizontally */
+}
+
+#about-btn, #help-btn {
+    position: absolute;
+    top: 20px;
+    z-index: 10;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-family: 'Aurebesh', sans-serif;
+}
+
+#about-btn { left: 20px; }
+#help-btn { right: 20px; }
+
+#card-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%; /* Adjust based on your preference */
+    height: 40%;
+    margin: 60px auto; /* Increased top and bottom margin */
+    padding: 20px;
+    box-sizing: border-box;
+    border: 2px solid #000; /* Simple solid border; customize as needed */
+    border-radius: 15px; /* Rounded corners */
+    background-color: #fff; /* Optional: adds background color */
+}
+
+#word {
+    font-family: 'Aurebesh', sans-serif;
+    /* Add any additional styling for the word display here */
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Adds a gap between buttons */
+    position: absolute; /* Positions the button absolutely within its relative parent, which is #container */
+    bottom: 90px; /* Distance from the bottom of the screen */
+    width: 80%;
+    height: 20%;
+    padding: 10px;
+}
+
+#check-btn, .response-btn {
+    flex: 1; /* Makes each button fill the container evenly */
+    padding: 10px 0; /* Ensures all buttons have the same height */
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+#check-btn {
+    background-color: #007bff; /* Example color; adjust as needed */
+    font-family: 'Aurebesh', sans-serif;
+}
+
+#missed-btn {
+    background-color: red;
+    font-family: 'Aurebesh', sans-serif;
+}
+
+#good-btn {
+    background-color: green;
+    font-family: 'Aurebesh', sans-serif;
+}
+
+
+#piles {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 20px; /* Adjust based on your layout */
+    width: 100%;
+}
+
+.pile {
+    position: relative; /* Allows absolute positioning relative to each pile */
+    display: flex;
+    justify-content: center; /* Centers the number horizontally */
+    align-items: center; /* Centers the number vertically */
+    width: 65px; /* Width of the icon */
+    height: 53px; /* Height of the icon */
+}
+
+.pile img {
+    width: 100%;
+    height: auto;
+}
+
+.pile-number {
+    position: absolute;
+    color: black; /* Choose a color that makes the number visible on your icon */
+    font-weight: bold; /* Makes the number more legible */
+}
