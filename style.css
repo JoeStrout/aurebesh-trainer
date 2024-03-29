@@ -23,11 +23,30 @@ body, html {
     align-items: center; /* Centers children horizontally */
 }
 
+button {
+	font-family: 'Aurebesh', sans-serif;
+	display: block; /* Block display to take full width of parent */
+    margin: 20px auto 10px auto;
+    padding: 10px 20px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    text-align: center; /* Ensures text is centered if needed */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover, adjust as needed */
+}
+
 #about-btn, #help-btn {
     position: absolute;
     top: 20px;
+    margin: 2px auto;
     z-index: 10;
     border: none;
+    color: #666666;
     background-color: #f0f0f0;
     cursor: pointer;
     font-family: 'Aurebesh', sans-serif;
@@ -35,6 +54,33 @@ body, html {
 
 #about-btn { left: 20px; }
 #help-btn { right: 20px; }
+
+#about, #help {
+    position: fixed; /* Fixed positioning to make it stay in place even when scrolling */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust positioning to truly center the div */
+    z-index: 1000; /* Ensure it's on top of other elements */
+    width: 80%; /* Or specify a fixed width */
+    max-width: 500px; /* Maximum width */
+    padding: 20px;
+    background-color: white; /* Background color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for a "pop-up" feel */
+    display: none; /* Initially hidden */
+}
+
+/* Additional styling for overlay background */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    z-index: 999; /* Just below the about content to cover other elements */
+    display: none; /* Initially hidden */
+}
 
 #card-view {
     display: flex;
@@ -118,4 +164,38 @@ body, html {
     position: absolute;
     color: black; /* Choose a color that makes the number visible on your icon */
     font-weight: bold; /* Makes the number more legible */
+}
+
+.aurebesh-table-container {
+    overflow-x: auto; /* Ensures table is scrollable on small screens */
+}
+
+.aurebesh-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.aurebesh-table td {
+    border: 1px solid #ccc; /* Light grey border */
+    text-align: center;
+    padding: 8px;
+    vertical-align: top; /* Align content to the top */
+}
+
+.aurebesh {
+    font-family: 'Aurebesh', sans-serif; /* Use Aurebesh font */
+    font-size: 24px; /* Larger font size for Aurebesh */
+}
+
+.english {
+    font-family: sans-serif; /* Standard font */
+    font-size: 16px; /* Smaller font size for English */
+    color: #666; /* Dark grey for contrast */
+}
+
+.name {
+    font-family: sans-serif;
+    font-size: 14px; /* Even smaller font size for the letter's name */
+    color: #999; /* Light grey for name */
+    margin-top: 4px; /* Space between English letter and its name */
 }

@@ -70,6 +70,26 @@ function handleGood() {
 	showWord();
 }
 
+function showAbout() {
+    document.getElementById('about').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+}
+
+function hideAbout() {
+    document.getElementById('about').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+}
+
+function showHelp() {
+    document.getElementById('help').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+}
+
+function hideHelp() {
+    document.getElementById('help').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+}
+
 function setup() {
 	updatePileNumbers();
 	showWord();
@@ -81,15 +101,10 @@ function setup() {
 document.getElementById('check-btn').addEventListener('click', check);
 document.getElementById('missed-btn').addEventListener('click', handleMissed);
 document.getElementById('good-btn').addEventListener('click', handleGood);
-
-document.getElementById('about-btn').addEventListener('click', function() {
-    alert('About this app: [Your explanation here]');
-});
-
-document.getElementById('help-btn').addEventListener('click', function() {
-    alert('Cheat Sheet: [Your cheat sheet here]');
-});
-
+document.getElementById('about-btn').addEventListener('click', showAbout);
+document.getElementById('help-btn').addEventListener('click', showHelp);
+document.getElementById('close-about').addEventListener('click', hideAbout);
+document.getElementById('close-help').addEventListener('click', hideHelp);
 
 //----------------------------------------------------------------------
 // Main program
