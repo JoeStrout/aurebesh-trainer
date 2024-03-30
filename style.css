@@ -178,24 +178,26 @@ button:hover {
 .aurebesh-table td {
     border: 1px solid #ccc; /* Light grey border */
     text-align: center;
-    padding: 8px;
+    padding: 0px;
     vertical-align: top; /* Align content to the top */
 }
 
 .aurebesh {
-    font-family: 'Aurebesh', sans-serif; /* Use Aurebesh font */
-    font-size: 24px; /* Larger font size for Aurebesh */
+    font-family: 'Aurebesh', sans-serif;
+    font-size: 24px;
+    margin-top: 2px;
 }
 
 .english {
-    font-family: sans-serif; /* Standard font */
-    font-size: 16px; /* Smaller font size for English */
-    color: #666; /* Dark grey for contrast */
+    font-family: sans-serif;
+    font-size: 16px;
+    color: #666;
 }
 
 .name {
     font-family: sans-serif;
-    font-size: 14px; /* Even smaller font size for the letter's name */
-    color: #999; /* Light grey for name */
-    margin-top: 4px; /* Space between English letter and its name */
+    font-size: 14px;
+    color: #CCC;
+    margin-top: 2px;
+    margin-bottom: 0px;
 }
