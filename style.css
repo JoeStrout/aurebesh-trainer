@@ -99,7 +99,7 @@ button:hover {
 
 #word {
     font-family: 'Aurebesh', sans-serif;
-    /* Add any additional styling for the word display here */
+    font-size: 32px;
 }
 
 #buttons {

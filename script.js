@@ -1,16 +1,32 @@
 //----------------------------------------------------------------------
 // Global variables
 //----------------------------------------------------------------------
-var wordPiles = [
-    ["OF", "THE", "JEDI", "RETURN"], // Pile 1: Initial words
-    [], // Pile 2: Empty initially
-    [], // Pile 3: Empty initially
-    [], // Pile 4: Empty initially
-    []  // Pile 5: Empty initially
+var sourceWords = [
+	"?", "CHECK", "GOOD", "MISSED", "A", "N", "I", "IN", "T", "O", "ON", "TO", "NOT", 
+	"ION", "E", "ONE", "S", "IS", "R", "OR", "ARE", "ORES", "H", "THE", "THIS", "D", 
+	"AND", "DEAD", "DROID", "HONDO", "TRADES", "DETONATOR", "L", "ALL", "OIL", "SOLD",
+	"SALES", "DETAIL", "SLASHED", "U", "OUT", "RUST", "OUTER", "RETURN", "C", "CODE", 
+	"COCA-COLA",
+	"SCORE", "SCENE", "CAUTION", "COURSES", "CORUSCANT", "M", "RIM", "MOM", "MOST", 
+	"MASS", "SOME", "CRIME", "MURDER", "CONSUME", "MAINTENANCE", "F", "OF", "FOR", 
+	"OFF", "SAFE", "FLUID", "THEFT", "INFLATE", "LIFEFORMS", "Y", "ONLY", "DAILY", 
+	"MEMORY", "W", "WITH", "WATER", "SWITCH", "WANTED", "REWARD", "SOMEWHERE", "G", 
+	"GUYS", "LAUGH", "DANGER", "GUIDES", "WARNING", "CHANGES", "FLEEING", "CLONING", 
+	"GENERAL", "LANGUAGE", "FLUSHING", "TRAINING", "DESIGNATOR", "RESTRAINING", "P", 
+	"PULL", "STOP", "PERSON", "POLICE", "REPAIR", "PRICES", "SUPPLY", "PLEASE",
+	"REPAIR", "SPEEDER", "CORRUPT", "PLANNING", "POSITION", "SPACEWARD", "POLISHING", 
+	"APPOINTMENT", "APPLICATION", "B", "ABOUT", "BOLT", "B", "BY", "BASIC", "BLASTER", 
+	"V", "HAVE", "ALIVE", "SAVAGE", "REMOVAL", "SERVICE", "SALVAGE", "PRIVATE", 
+	"VIOLENCE", "SURVIVAL", "AVAILABLE", "MOTIVATOR", "OVERHAULS", "X", "TOXIC", 
+	"EXTORTION", "EXPEDITION", "K", "ASK", "LUCK", "DRINK", "LUCKY", "WEEKLY", 
+	"KIDNAPPING", "Q", "J", "JUNK", "JEDI", "Z", "SPECIALIZED", "&"
 ];
 
-var currentPileIndex = 0;
+var wordPiles = [ [], [], [], [], [] ];
+
+var currentPileIndex = 4;
 var currentWordIndex = -1;
+var loopToPile = 4;
 
 //----------------------------------------------------------------------
 // Functions
@@ -36,9 +52,19 @@ function moveToFirstPile(wordIndex, fromPileIndex) {
 }
 
 function drawWord(pileIndex) {
-	if (pileIndex < 0) pileIndex++;
+	// Try to draw from the given pile; if we can't, then try the next pile down.
+	// If we get to pile 0 and it's empty, then pull 5 more words from the source
+	// words (if any are left).
+	if (pileIndex < 0) pileIndex = wordPiles.length - 1;
 	while (wordPiles[pileIndex].length == 0) {
-		pileIndex++;
+		pileIndex--;
+		if (pileIndex < 0) pileIndex = wordPiles.length - 1;
+		if (pileIndex == 0 && wordPiles[0].length == 0) {
+			// refill pile 0 from the source words!
+			for (i=0; i<5 && sourceWords.length > 0; i++) {
+				wordPiles[0].push(sourceWords.splice(0, 1)[0]);
+			}
+		}
 	}
 	currentPileIndex = pileIndex;
 	currentWordIndex = 0;	// (draw from top)
@@ -46,11 +72,19 @@ function drawWord(pileIndex) {
 }
 
 function showWord() {
+	currentPileIndex -= 1;
+	if (currentPileIndex < 0) {
+		currentPileIndex = loopToPile;
+		loopToPile -= 1;
+		if (loopToPile < 0) loopToPile = wordPiles.length - 1;
+		console.log("looped to " + currentPileIndex + "; next loop is to " + loopToPile);
+	}
     document.getElementById('word').innerHTML = drawWord(currentPileIndex);
     document.getElementById('word').style.fontFamily = 'Aurebesh';
     document.getElementById('check-btn').style.display = 'block'; // Show Check button
     document.getElementById('missed-btn').style.display = 'none'; // Hide Missed button
     document.getElementById('good-btn').style.display = 'none'; // Hide Good button
+    updatePileNumbers();
 }
 
 function check() {
