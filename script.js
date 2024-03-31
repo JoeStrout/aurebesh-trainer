@@ -26,6 +26,7 @@ var wordPiles = [ [], [], [], [], [] ];
 
 var currentPileIndex = 4;
 var currentWordIndex = -1;
+var currentWord = "";
 var loopToPile = 4;
 
 //----------------------------------------------------------------------
@@ -71,7 +72,7 @@ function drawWord(pileIndex) {
 	return wordPiles[currentPileIndex][currentWordIndex];
 }
 
-function showWord() {
+function nextWord() {
 	currentPileIndex -= 1;
 	if (currentPileIndex < 0) {
 		currentPileIndex = loopToPile;
@@ -79,7 +80,16 @@ function showWord() {
 		if (loopToPile < 0) loopToPile = wordPiles.length - 1;
 		console.log("looped to " + currentPileIndex + "; next loop is to " + loopToPile);
 	}
-    document.getElementById('word').innerHTML = drawWord(currentPileIndex);
+	return drawWord(currentPileIndex);
+}
+
+function showWord() {
+	while (1) {
+		word = nextWord();
+		if (word != currentWord) break;
+	}
+	currentWord = word;
+    document.getElementById('word').innerHTML = word;
     document.getElementById('word').style.fontFamily = 'Aurebesh';
     document.getElementById('check-btn').style.display = 'block'; // Show Check button
     document.getElementById('missed-btn').style.display = 'none'; // Hide Missed button
