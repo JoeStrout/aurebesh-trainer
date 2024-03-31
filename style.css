@@ -3,6 +3,40 @@
     src: url('AurebeshAF-Canon.otf') format('opentype');
 }
 
+:root {
+    /* Light mode variables */
+    --background-color: white;
+    --text-color: #121212;
+    --header-color: black;
+    --link-color: blue;
+    --visited-color: purple;
+    --card-text: black;
+    --card-background: #EEE;
+    --button-color: #f0f0f0;
+    --button-text: #666;
+    --popup-background: white;
+    --popup-text: #666;
+    --strong-gray: #666;
+    --weak-gray: #ccc;
+}
+
+.dark-mode {
+    /* Dark mode variables */
+    --background-color: #121212;
+    --text-color: #CCCCCC;
+    --header-color: white;
+    --link-color: #4e9afc;
+    --visited-color: #b2b;
+    --card-text: white;
+    --card-background: #333;
+    --button-color: #555;
+    --button-text: #ccc;
+    --popup-background: black;
+    --popup-text: #ccc;
+    --strong-gray: #ccc;
+    --weak-gray: #777;
+}
+
 body, html {
     margin: 0;
     padding: 0;
@@ -11,7 +45,16 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
     touch-action: manipulation; /* disables double-tap zooming */
+}
+
+a:link { color: var(--link-color); }
+a:visited { color: var(--visited-color); }
+
+.aurebesh {
+	font-family: 'Aurebesh', sans-serif;
 }
 
 #container {
@@ -38,7 +81,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker shade on hover, adjust as needed */
+    background-color: #0056b3;
 }
 
 #about-btn, #help-btn {
@@ -47,25 +90,31 @@ button:hover {
     margin: 2px auto;
     z-index: 10;
     border: none;
-    color: #666666;
-    background-color: #f0f0f0;
+    color: var(--button-text);
+    background-color: var(--button-color);
     cursor: pointer;
     font-family: 'Aurebesh', sans-serif;
 }
 
 #about-btn { left: 20px; }
-#help-btn { right: 20px; }
+#help-btn { 
+	right: 20px;
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+}
 
 #about, #help {
-    position: fixed; /* Fixed positioning to make it stay in place even when scrolling */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
+    position: fixed;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%); /* Adjust positioning to truly center the div */
     z-index: 1000; /* Ensure it's on top of other elements */
     width: 80%; /* Or specify a fixed width */
     max-width: 500px; /* Maximum width */
     padding: 20px;
-    background-color: white; /* Background color */
+    background-color: var(--popup-background);
+    text-color: var(--popup-text);
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for a "pop-up" feel */
     display: none; /* Initially hidden */
@@ -90,12 +139,13 @@ button:hover {
     justify-content: center;
     width: 80%; /* Adjust based on your preference */
     height: 40%;
-    margin: 60px auto; /* Increased top and bottom margin */
+    margin: 120px auto;
     padding: 20px;
     box-sizing: border-box;
     border: 2px solid #000; /* Simple solid border; customize as needed */
-    border-radius: 15px; /* Rounded corners */
-    background-color: #fff; /* Optional: adds background color */
+    border-radius: 16px;
+    color: var(--card-text);
+    background-color: var(--card-background);
 }
 
 #word {
@@ -164,7 +214,9 @@ button:hover {
 .pile-number {
     position: absolute;
     color: black; /* Choose a color that makes the number visible on your icon */
-    font-weight: bold; /* Makes the number more legible */
+    font-family: 'Aurebesh', sans-serif;
+    font-size: 24px;
+/*    font-weight: bold;*/
 }
 
 .aurebesh-table-container {
@@ -183,22 +235,22 @@ button:hover {
     vertical-align: top; /* Align content to the top */
 }
 
-.aurebesh {
+.aurebesh-table .aurebesh {
     font-family: 'Aurebesh', sans-serif;
     font-size: 24px;
     margin-top: 2px;
 }
 
-.english {
+.aurebesh-table .english {
     font-family: sans-serif;
     font-size: 16px;
-    color: #666;
+    color: var(--strong-gray);
 }
 
-.name {
+.aurebesh-table .name {
     font-family: sans-serif;
     font-size: 14px;
-    color: #CCC;
+    color: var(--weak-gray);
     margin-top: 2px;
     margin-bottom: 0px;
 }

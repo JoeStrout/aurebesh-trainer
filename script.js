@@ -34,7 +34,10 @@ var loopToPile = 4;
 //----------------------------------------------------------------------
 function updatePileNumbers() {
 	for (i=0; i<wordPiles.length; i++) {
-		document.getElementById('pile-' + (i+1)).innerHTML = wordPiles[i].length;
+		pileNum = document.getElementById('pile-' + (i+1));
+		pileNum.innerHTML = wordPiles[i].length;
+		pileNum.style.fontSize = (i == currentPileIndex ? "28px" : "22px");		
+		pileNum.style.color = (i == currentPileIndex ? "#000" : "#444");		
 	}
 }
 
@@ -58,14 +61,15 @@ function drawWord(pileIndex) {
 	// words (if any are left).
 	if (pileIndex < 0) pileIndex = wordPiles.length - 1;
 	while (wordPiles[pileIndex].length == 0) {
-		pileIndex--;
-		if (pileIndex < 0) pileIndex = wordPiles.length - 1;
 		if (pileIndex == 0 && wordPiles[0].length == 0) {
 			// refill pile 0 from the source words!
-			for (i=0; i<5 && sourceWords.length > 0; i++) {
+			for (i=0; i < 5 && sourceWords.length > 0; i++) {
 				wordPiles[0].push(sourceWords.splice(0, 1)[0]);
 			}
+			break;
 		}
+		pileIndex--;
+		
 	}
 	currentPileIndex = pileIndex;
 	currentWordIndex = 0;	// (draw from top)
@@ -98,7 +102,7 @@ function showWord() {
 }
 
 function check() {
-    document.getElementById('word').style.fontFamily = 'sans-serif';
+    document.getElementById('word').style.fontFamily = 'serif';
     document.getElementById('check-btn').style.display = 'none'; // Hide Check button
     document.getElementById('missed-btn').style.display = 'inline-block'; // Show Missed button
     document.getElementById('good-btn').style.display = 'inline-block'; // Show Good button
@@ -134,7 +138,16 @@ function hideHelp() {
     document.getElementById('overlay').style.display = 'none';
 }
 
+function setDarkMode(dark) {
+	if (dark) {
+	    document.body.classList.add('dark-mode');
+	} else {
+	    document.body.classList.remove('dark-mode');
+	}
+}
+
 function setup() {
+	setDarkMode(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
 	updatePileNumbers();
 	showWord();
 }
@@ -149,6 +162,9 @@ document.getElementById('about-btn').addEventListener('click', showAbout);
 document.getElementById('help-btn').addEventListener('click', showHelp);
 document.getElementById('close-about').addEventListener('click', hideAbout);
 document.getElementById('close-help').addEventListener('click', hideHelp);
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+	setDarkMode(event.matches);
+});
 
 //----------------------------------------------------------------------
 // Main program
