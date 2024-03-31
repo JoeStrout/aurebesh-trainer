@@ -52,3 +52,6 @@ You will even be equipped to find apparent mistakes, like this one above a port 
 
 Watch out for that toxic flui!
 
+## About the Author
+
+Aurebesh Trainer was created by Joe Strout, in a fit of inspiration after visiting the _Galaxy's Edge_ park in Disneyland.  Joe is also the author of the [MiniScript](https://miniscript.org) language and [Mini Micro](https://miniscript.org/MiniMicro), a great free programming environment.  Ever wanted to learn to code?  Already know how to code but want a fun environment with a friendly community?  Give [MiniScript](https://miniscript.org) a try!
