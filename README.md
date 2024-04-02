@@ -32,7 +32,7 @@ When you think you've figured out what the word is, tap the big blue button (the
 
 If you were able to read the word without help, then tap the big green "Good" button.  If you missed it or needed help, tap the red "Missed" button.
 
-The cards are organized into give bins, shown at the bottom of the screen.  When you tap "Good", the card moves one bin to the right.  When you tap "Missed", it goes all the way back to the left.  Cards are presented in such a way that you see ones further to the left a lot more than the ones on the right.  The net effect is that you spend more time learning new stuff, and less time reviewing stuff you already know.
+The cards are organized into five bins, shown at the bottom of the screen.  When you tap "Good", the card moves one bin to the right.  When you tap "Missed", it goes all the way back to the left.  Cards are presented in such a way that you see ones further to the left a lot more than the ones on the right.  The net effect is that you spend more time learning new stuff, and less time reviewing stuff you already know.
 
 Aurebesh Trainer includes about 125 cards, all drawn from text actually found at Galaxy's Edge or in the movies.
 
