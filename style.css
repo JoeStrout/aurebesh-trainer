@@ -68,7 +68,6 @@ a:visited { color: var(--visited-color); }
 }
 
 button {
-	font-family: 'Aurebesh', sans-serif;
 	display: block; /* Block display to take full width of parent */
     margin: 20px auto 10px auto;
     padding: 10px 20px;
@@ -93,7 +92,6 @@ button:hover {
     color: var(--button-text);
     background-color: var(--button-color);
     cursor: pointer;
-    font-family: 'Aurebesh', sans-serif;
 }
 
 #about-btn { left: 20px; }
@@ -175,17 +173,14 @@ button:hover {
 
 #check-btn {
     background-color: #007bff; /* Example color; adjust as needed */
-    font-family: 'Aurebesh', sans-serif;
 }
 
 #missed-btn {
     background-color: red;
-    font-family: 'Aurebesh', sans-serif;
 }
 
 #good-btn {
     background-color: green;
-    font-family: 'Aurebesh', sans-serif;
 }
 
 

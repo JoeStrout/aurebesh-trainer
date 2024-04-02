@@ -2,8 +2,8 @@
 // Global variables
 //----------------------------------------------------------------------
 var sourceWords = [
-	"?", "CHECK", "GOOD", "MISSED", "A", "N", "I", "IN", "T", "O", "ON", "TO", "NOT", 
-	"ION", "E", "ONE", "S", "IS", "R", "OR", "ARE", "ORES", "H", "THE", "THIS", "D", 
+	"?", "CHECK", "GOOD", "MISSED", "A", "ABOUT", "N", "I", "IN", "T", "O", "ON", "TO", "OK",
+	"NOT", "ION", "E", "ONE", "S", "IS", "R", "OR", "ARE", "ORES", "H", "THE", "THIS", "D", 
 	"AND", "DEAD", "DROID", "HONDO", "TRADES", "DETONATOR", "L", "ALL", "OIL", "SOLD",
 	"SALES", "DETAIL", "SLASHED", "U", "OUT", "RUST", "OUTER", "RETURN", "C", "CODE", 
 	"COCA-COLA",
@@ -82,7 +82,7 @@ function nextWord() {
 		currentPileIndex = loopToPile;
 		loopToPile -= 1;
 		if (loopToPile < 0) loopToPile = wordPiles.length - 1;
-		console.log("looped to " + currentPileIndex + "; next loop is to " + loopToPile);
+// 		console.log("looped to " + currentPileIndex + "; next loop is to " + loopToPile);
 	}
 	return drawWord(currentPileIndex);
 }
@@ -106,6 +106,19 @@ function check() {
     document.getElementById('check-btn').style.display = 'none'; // Hide Check button
     document.getElementById('missed-btn').style.display = 'inline-block'; // Show Missed button
     document.getElementById('good-btn').style.display = 'inline-block'; // Show Good button
+    
+    // Also, since we've just revealed a word the user now knows,
+    // update the UI to show that word in Aurebesh.
+    var uiElement = [];
+    switch (currentWord) {
+    case '?': uiElement = ['help-btn']; break;
+    case 'ABOUT': uiElement = ['about-btn']; break;
+    case 'CHECK': uiElement = ['check-btn']; break;
+    case 'GOOD': uiElement = ['good-btn']; break;
+    case 'MISSED': uiElement = ['missed-btn']; break;
+    case 'OK': uiElement = ['close-about', 'close-help']; break;
+    }
+    for (i=0; i<uiElement.length; i++) document.getElementById(uiElement[i]).classList.add('aurebesh');
 }
 
 function handleMissed() {
@@ -150,6 +163,7 @@ function setup() {
 	setDarkMode(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
 	updatePileNumbers();
 	showWord();
+	showAbout();
 }
 
 //----------------------------------------------------------------------
